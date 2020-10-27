@@ -1,33 +1,27 @@
-import java.io.Serializable;
 
-public class Movie implements Serializable{
-	private int productId;
-	private String title;
-	private int value;
+
+public class Movie extends Item{
+
 	private int runLength; 
 	private float rating;
 	
 	
 	public Movie() {
-		productId = 0;
-		title = null;
-		value = 0;
+		super();
 		runLength = 0;
 		rating = 0.0f;
 		
 	}
 	public Movie (int productId, String title, int value, int runLength, float rating) {
 		
-		this.productId = productId;
-		this.title = title;
-		this.value = value;
+		super(productId, title, value);
 		this.runLength = runLength;
 		this.rating = rating;
 		
 	}
 	@Override
 	public String toString() {
-		return productId + " " +  title + " " +  value + " " + runLength + " " + rating;
+		return super.productId + " " +  super.title + " " + super.value + " " + runLength + " " + rating;
 	}
 
 }

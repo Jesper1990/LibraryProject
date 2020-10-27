@@ -5,36 +5,32 @@ import java.util.List;
 
 public class Library implements Serializable {
 	
-	private List<Book> books;
-	private List<Movie> movies;
+	private List<Item> items;
 	
 	
 	public Library() {
-		books = new ArrayList<Book>();
-		movies = new ArrayList<Movie>();
+		items = new ArrayList<Item>();
 		
 	}
-	public void addBook(Book book) {
-		books.add(book);
+	public void addBook(Item item) {
+		items.add(item);
 	}
-	public void addMovie(Movie m) {
-		movies.add(m);
+	public void addMovie(Item item) {
+		items.add(item);
 	}
+
 
 	@Override
 	public String toString() {
 		String total = " ";
-		Iterator<Book> i = books.iterator();
+		Iterator<Item> i = items.iterator();
 		while(i.hasNext()) {
-			Book b = i.next();
-			total = total + b.toString();
+			Item it = i.next();
+			total = total + it.toString();
 		}
-		Iterator<Movie> m = movies.iterator();
-		while(m.hasNext()) {
-			Movie mov = m.next();
-			total = total + mov.toString();
-		}
+
 		return total;
 	}
+
 
 }
