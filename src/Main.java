@@ -1,32 +1,76 @@
-import java.util.List;
 import java.util.Scanner;
-import java.util.ArrayList;
+
 public class Main {
 
 	private static Scanner scanner = new Scanner(System.in);
+	private static boolean isRunning;
+	public static Library lib = new Library();
+
 
 	public static void main(String[] args) {
-		String str = scanner.next();
-		ArrayList<Data> arr = new ArrayList<Data>();
-		Data a = new Data(12345, "(Book): ", "To kill a Mockingbird. ", "(in stock)");
-		Data b = new Data(12346, "(Book): ", "The great gatsby. ", "(in stock)");
-		Data c = new Data(12347, "(Movie): ", "Godzilla. ", "(in stock)");
-		Data d = new Data(12348, "(Book): ", "The hobbit. ", "(in stock)");
-		arr.add(a);
-		arr.add(b);
-		arr.add(c);
-		arr.add(d);
-		if (str.equals("list")) {
-			for (Data s : arr) {
-				System.out.println(s);
-				continue;
-			}							
-		} else {
-			System.out.println("Avslutar programmet.");
-			System.exit(0);
+		System.out.println("Wanna register a book (b) or movie (m) ?");
+		
+		
+		isRunning = true;
+
+		while(isRunning) {
+			String str = scanner.next();
+			if(str.equals("b")) {
+				addBook();
+			}
+			else if (str.equals("m")) {
+				addMovie();
+			}
 		}
+
 	}
-}
+
+	public static void addBook() {
+		int productId;
+		String title; 
+		int value; 
+		int pages;
+		String publisher;
+
+		System.out.println("Enter productID: ");
+		productId = scanner.nextInt();
+		System.out.println("Enter Title: " );
+		title = scanner.next();
+		System.out.println("Enter Value: ");
+		value = scanner.nextInt();
+		System.out.println("Enter Pages: ");
+		pages = scanner.nextInt();
+		System.out.println("Enter Publisher: ");
+		publisher = scanner.next();
+
+		Book b = new Book(productId, title, value, pages, publisher);
+		lib.addBook(b);
+		System.out.println(lib);
+	}
+	public static void addMovie() {
+		int productId;
+		String title;
+		int value;
+		int runLength; 
+		float rating;
+
+		System.out.println("Enter productID: ");
+		productId = scanner.nextInt();
+		System.out.println("Enter Title: " );
+		title = scanner.next();
+		System.out.println("Enter Value: ");
+		value = scanner.nextInt();
+		System.out.println("Enter Runlength: ");
+		runLength = scanner.nextInt();
+		System.out.println("Enter Rating: ");
+		rating = scanner.nextFloat();
+
+		Movie m = new Movie(productId, title, value, runLength, rating); 
+		lib.addMovie(m);
+		System.out.println(lib);
+
+	}
+}	
 /* Vad skall göras? = Ett förenklat lagersystem som skall användas utav ett bibliotek.
 * Product = Book / Movie (String)
 * ------------------
