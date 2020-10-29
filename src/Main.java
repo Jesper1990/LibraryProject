@@ -110,22 +110,3 @@ public class Main {
 		}
 	}
 }	
-/* Vad skall göras? = Ett förenklat lagersystem som skall användas utav ett bibliotek.
-* Product = Book / Movie (String)
-* ------------------
-* Article Number (Integer)
-* Product Name (String)
-* Value in kronor (Integer)
-* --------------------
-* Book properties = 
-* Number of pages (Integer)
-* Publisher (String)
-* ---------------------
-* Movie properties = 
-* Length in minutes(Integer)
-* Rating on IMDB (Float 0-10f)
-* ---------------------
-* Customer = 
-* Name(String)
-* Phone number (String)
-*/
