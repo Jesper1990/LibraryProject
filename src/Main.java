@@ -22,7 +22,7 @@ public class Main {
 			String str = scanner.next();
 			if(str.equals("b")) {
 				addBook();
-				System.out.println("Sucessfully registered: ");
+				System.out.println("Wanna register a book (b) or movie (m) ?");
 			}
 			else if (str.equals("m")) {
 				addMovie();
@@ -38,25 +38,34 @@ public class Main {
 
 	public static void addBook() {
 		int productId;
-		String title; 
+		String title;
 		int value; 
 		int pages;
 		String publisher;
+		
 
 		System.out.println("Enter productID: ");
 		productId = scanner.nextInt();
+		scanner.nextLine();
 		System.out.println("Enter Title: " );
-		title = scanner.next();
+		title = scanner.nextLine();
 		System.out.println("Enter Value: ");
 		value = scanner.nextInt();
 		System.out.println("Enter Pages: ");
 		pages = scanner.nextInt();
+		scanner.nextLine();
 		System.out.println("Enter Publisher: ");
-		publisher = scanner.next();
+		publisher = scanner.nextLine();
+		
+		if(lib.checkId(productId)) {
+			System.out.println("Error: Product with ID " + productId + " already exists!");			
+		} else {
+			Book b = new Book(productId, title, value, pages, publisher);
+			lib.addBook(b);
+			System.out.println("Successfully registered " + title + "!");
+			System.out.println(lib);
+		}
 
-		Book b = new Book(productId, title, value, pages, publisher);
-		lib.addBook(b);
-		System.out.println(lib);
 	}
 	public static void addMovie() {
 		int productId;
@@ -78,6 +87,7 @@ public class Main {
 
 		Movie m = new Movie(productId, title, value, runLength, rating); 
 		lib.addMovie(m);
+		System.out.println("Successfully registered " + title + "!");
 		System.out.println(lib);
 
 	}

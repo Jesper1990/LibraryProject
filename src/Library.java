@@ -1,36 +1,38 @@
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map.Entry;
 
 public class Library implements Serializable {
 	
-	private List<Item> items;
+	private HashMap<Integer, Item> map;
 	
 	
 	public Library() {
-		items = new ArrayList<Item>();
+		map = new HashMap<>();
 		
 	}
 	public void addBook(Item item) {
-		items.add(item);
+		map.put(item.productId, item);
 	}
 	public void addMovie(Item item) {
-		items.add(item);
+		map.put(item.productId, item);
 	}
-
-
+	public boolean checkId(int productId) {
+		if(map.containsKey(productId)) {
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public String toString() {
-		String total = " ";
-		Iterator<Item> i = items.iterator();
-		while(i.hasNext()) {
-			Item it = i.next();
-			total = total + it.toString();
+		String total = "";
+		Iterator<Entry<Integer, Item>> it = map.entrySet().iterator();
+		while(it.hasNext()) {
+			Entry<Integer, Item> i = it.next();
+			total = total + i.toString();
 		}
-
 		return total;
 	}
-
-
 }

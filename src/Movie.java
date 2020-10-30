@@ -21,7 +21,7 @@ public class Movie extends Item{
 	}
 	@Override
 	public String toString() {
-		return super.productId + " " +  super.title + " " + super.value + " " + runLength + " " + rating;
+		return super.productId + " " + "(Movie)" + " " +  super.title + " " + super.value + " " + runLength + " " + rating + "\n";
 	}
 
 }
