@@ -76,8 +76,9 @@ public class Main {
 
 		System.out.println("Enter productID: ");
 		productId = scanner.nextInt();
+		scanner.nextLine();
 		System.out.println("Enter Title: " );
-		title = scanner.next();
+		title = scanner.nextLine();
 		System.out.println("Enter Value: ");
 		value = scanner.nextInt();
 		System.out.println("Enter Runlength: ");
@@ -85,10 +86,14 @@ public class Main {
 		System.out.println("Enter Rating: ");
 		rating = scanner.nextFloat();
 
-		Movie m = new Movie(productId, title, value, runLength, rating); 
-		lib.addMovie(m);
-		System.out.println("Successfully registered " + title + "!");
-		System.out.println(lib);
+		if(lib.checkId(productId)) {
+			System.out.println("Error: Product with ID " + productId + " already exists!");			
+		} else {
+			Movie m = new Movie(productId, title, value, runLength, rating);
+			lib.addMovie(m);
+			System.out.println("Successfully registered " + title + "!");
+			System.out.println(lib);
+		}
 
 	}
 	
