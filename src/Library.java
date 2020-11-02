@@ -24,6 +24,13 @@ public class Library implements Serializable {
 		}
 		return false;
 	}
+	public void borrowItem(int productId, Person person) {
+		if (map.get(productId).borrowedBy == null) {
+			map.get(productId).borrowedBy = person;
+		} else {
+			System.out.println("Book is already borrowed");
+		}
+	}
 	
 	@Override
 	public String toString() {
@@ -31,7 +38,7 @@ public class Library implements Serializable {
 		Iterator<Entry<Integer, Item>> it = map.entrySet().iterator();
 		while(it.hasNext()) {
 			Entry<Integer, Item> i = it.next();
-			total = total + i.toString();
+			total = total + i.getValue();
 		}
 		return total;
 	}

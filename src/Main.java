@@ -31,6 +31,14 @@ public class Main {
 				addList();
 			} else if (str.equals("read")) {
 				readList();
+			} else if (str.equals("list")) {
+				try {
+					listPrint();
+				} catch (StackOverflowError e) {
+					System.out.println("Stack error");
+				}
+			} else if (str.equals("checkout")) {
+				borrowItem();
 			}
 		}
 
@@ -63,7 +71,7 @@ public class Main {
 			Book b = new Book(productId, title, value, pages, publisher);
 			lib.addBook(b);
 			System.out.println("Successfully registered " + title + "!");
-			System.out.println(lib);
+			
 		}
 
 	}
@@ -92,9 +100,31 @@ public class Main {
 			Movie m = new Movie(productId, title, value, runLength, rating);
 			lib.addMovie(m);
 			System.out.println("Successfully registered " + title + "!");
-			System.out.println(lib);
+			
 		}
 
+	}
+	public static void listPrint() {
+		listPrint();
+	}
+	
+	public static void borrowItem() {
+		int productId;
+		String name;
+		String phoneNum;
+		System.out.println("Enter the product ID of the item you wanna borrow: ");
+		productId = scanner.nextInt();
+		scanner.nextLine();
+		System.out.println("Enter your full name: ");
+		name = scanner.nextLine();
+		System.out.println("Enter your phone number: ");
+		phoneNum = scanner.next();
+				
+		Person p = new Person(name, phoneNum);
+		
+		lib.borrowItem(productId, p);
+		
+		System.out.println("Successfully lended: ***** to " + name);
 	}
 	
 	public static void addList() {
@@ -117,7 +147,7 @@ public class Main {
 			fis = new FileInputStream(fileName);
 			ois = new ObjectInputStream(fis);
 			lib = (Library) ois.readObject();
-			System.out.println(lib);
+			System.out.println(lib);			
 			ois.close();
 		} catch (Exception e) {
 			e.printStackTrace();

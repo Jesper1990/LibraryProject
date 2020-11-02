@@ -5,6 +5,7 @@ public class Item implements Serializable{
 	protected int productId;
 	protected String title;
 	protected int value;
+	protected Person borrowedBy;
 
 	public Item() {
 		productId = 0;
@@ -17,6 +18,9 @@ public class Item implements Serializable{
 		this.title = title;
 		this.value = value;
 	}
+	public void borrowItem(Person person) {
+		this.borrowedBy = person;
+	}
 	@Override
 	public boolean equals(Object o) {
 		if(this.productId == (((Item)o).productId)) {
@@ -26,8 +30,7 @@ public class Item implements Serializable{
 	}
 	@Override
 	public int hashCode() {
-		return productId;
-		
+		return productId;		
 	}
 
 	@Override
