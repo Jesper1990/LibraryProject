@@ -120,8 +120,7 @@ public class Main {
 		System.out.println("Enter your phone number: ");
 		phoneNum = scanner.next();
 				
-		Person p = new Person(name, phoneNum);
-		
+		Person p = new Person(name, phoneNum);		
 		lib.borrowItem(productId, p);			
 	}
 	public static void returnItem() {
