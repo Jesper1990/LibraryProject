@@ -122,9 +122,13 @@ public class Main {
 				
 		Person p = new Person(name, phoneNum);
 		
-		lib.borrowItem(productId, p);
+		lib.borrowItem(productId, p);			
+	}
+	public static void returnItem() {
+		int productId;
+		System.out.println("Enter the product ID of the item you wanna return: ");
+		productId = scanner.nextInt();
 		
-		System.out.println("Successfully lended: ***** to " + name);
 	}
 	
 	public static void addList() {

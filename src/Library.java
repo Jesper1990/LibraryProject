@@ -27,8 +27,17 @@ public class Library implements Serializable {
 	public void borrowItem(int productId, Person person) {
 		if (map.get(productId).borrowedBy == null) {
 			map.get(productId).borrowedBy = person;
+			System.out.println("Successfully lended " + map.get(productId) + " to " + person);
 		} else {
 			System.out.println("Book is already borrowed");
+		}
+	}
+	public void returnItem(int productId, Person person) {
+		if(!(map.get(productId).borrowedBy == null)) {
+			map.get(productId).borrowedBy = null;
+			System.out.println("Successfully returned " + map.get(productId) + " from " + person);
+		} else {
+			System.out.println("Cannot return. It is already borrowed.");
 		}
 	}
 	
