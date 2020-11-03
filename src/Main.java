@@ -39,6 +39,8 @@ public class Main {
 				}
 			} else if (str.equals("checkout")) {
 				borrowItem();
+			} else if (str.equals("remove")) {
+				removeItem();
 			}
 		}
 
@@ -102,8 +104,17 @@ public class Main {
 			System.out.println("Successfully registered " + title + "!");
 			
 		}
-
+				
 	}
+	public static void removeItem() {
+		int productId;
+		System.out.println("Enter the product ID of the item you wanna remove: ");
+		
+		productId = scanner.nextInt();
+		
+		lib.removeItem(productId);
+	}
+	
 	public static void listPrint() {
 		listPrint();
 	}
