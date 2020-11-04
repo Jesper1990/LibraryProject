@@ -24,11 +24,9 @@ public class Library implements Serializable {
 		}
 		return false;		
 	}
-	public void removeItem(int productId) {
-		if (map.containsKey(productId)) {
-			map.remove(productId);	
-			System.out.println("succesfully removed" + map.get(productId).title);
-		}
+	public void  removeItem(int productId) {														
+		System.out.println("succesfully removed " +map.remove(productId).title);
+		
 	}
 
 	public void borrowItem(int productId, Person person) {

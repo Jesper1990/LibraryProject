@@ -110,9 +110,12 @@ public class Main {
 		int productId;
 		System.out.println("Enter the product ID of the item you wanna remove: ");
 		
-		productId = scanner.nextInt();
+		productId = scanner.nextInt();		
+		if(lib.checkId(productId)) {
+			lib.removeItem(productId);
+		}
+				
 		
-		lib.removeItem(productId);
 	}
 	
 	public static void listPrint() {
