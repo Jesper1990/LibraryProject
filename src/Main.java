@@ -1,5 +1,6 @@
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
@@ -22,20 +23,20 @@ public class Main {
 			String str = scanner.next();
 			if(str.equals("b")) {
 				addBook();
+				addList();
 				System.out.println("Wanna register a book (b) or movie (m) ?");
 			}
 			else if (str.equals("m")) {
 				addMovie();
-				System.out.println("Wanna register a book (b) or movie (m) ?");
-			} else if (str.equals("save")) {
 				addList();
+				System.out.println("Wanna register a book (b) or movie (m) ?");
 			} else if (str.equals("read")) {
 				readList();
 			} else if (str.equals("list")) {
 				try {
 					listPrint();
 				} catch (StackOverflowError e) {
-					System.out.println("Stack error");
+					e.printStackTrace();
 				}
 			} else if (str.equals("checkout")) {
 				borrowItem();
@@ -116,7 +117,7 @@ public class Main {
 	}
 	
 	public static void listPrint() {
-		listPrint();
+		lib.listPrint();
 	}
 	
 	public static void borrowItem() {
@@ -132,12 +133,14 @@ public class Main {
 		phoneNum = scanner.next();
 				
 		Person p = new Person(name, phoneNum);		
-		lib.borrowItem(productId, p);			
+		lib.borrowItem(productId, p);
+		
 	}
 	public static void returnItem() {
 		int productId;
 		System.out.println("Enter the product ID of the item you wanna return: ");
 		productId = scanner.nextInt();
+		
 		
 	}
 	
@@ -148,10 +151,15 @@ public class Main {
 			fos = new FileOutputStream(fileName);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(lib);
-			oos.close();
+			oos.flush();
 		} catch(Exception e ) {
 			e.printStackTrace();
 			return;
+		}
+		try {
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	public static void readList() {
@@ -161,7 +169,7 @@ public class Main {
 			fis = new FileInputStream(fileName);
 			ois = new ObjectInputStream(fis);
 			lib = (Library) ois.readObject();
-			System.out.println(lib);			
+			System.out.println(lib);		
 			ois.close();
 		} catch (Exception e) {
 			e.printStackTrace();

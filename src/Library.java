@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class Library implements Serializable {
@@ -46,6 +47,21 @@ public class Library implements Serializable {
 		} else {
 			System.out.println("Cannot return " + map.get(productId).title + "." + "It is already borrowed.");
 		}
+	}
+	public void listPrint() {	
+		
+		map.forEach((key, value) -> {
+			String itemType = " ";
+			if(value instanceof Book) {
+				itemType = "book"; 
+			} else {
+				itemType = "movie";
+			}
+			System.out.println(key + " " + itemType + " " + value.title + " " + value.borrowedBy);
+		});
+	
+		
+	
 	}
 
 	@Override
