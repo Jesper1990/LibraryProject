@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -109,13 +110,16 @@ public class Main {
 	public static void removeItem() {
 		int productId;
 		System.out.println("Enter the product ID of the item you wanna remove: ");
-		
-		productId = scanner.nextInt();		
+
+		try {	productId = scanner.nextInt();
 		if(lib.checkId(productId)) {
 			lib.removeItem(productId);
+		} else { System.out.println("product doesnt exist"); }
+
+		}	catch(InputMismatchException e) {
+			System.out.println("please enter an Id");
 		}
-				
-		
+
 	}
 	
 	public static void listPrint() {
