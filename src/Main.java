@@ -14,7 +14,7 @@ public class Main {
 	private static String fileName = "library.txt";
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		System.out.println("Wanna register a book (b) or movie (m) ?");
 		
 		
@@ -43,6 +43,9 @@ public class Main {
 				borrowItem();
 			} else if (str.equals("remove")) {
 				removeItem();
+				
+			}else if (str.equals("info")) {
+				infoItem();
 			}
 		}
 
@@ -122,7 +125,19 @@ public class Main {
 		}
 
 	}
-	
+	public static void infoItem() {
+		int productId;
+		try {	productId = scanner.nextInt();
+		if (lib.checkId(productId)){
+			lib.infoItem(productId);
+		} else {
+			System.out.println("error: no product with id " + productId + " registered.");}
+		}
+		catch(InputMismatchException e) {
+			System.out.println("please enter an Id");
+		}
+	}
+
 	public static void listPrint() {
 		lib.listPrint();
 	}

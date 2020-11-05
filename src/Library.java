@@ -29,6 +29,9 @@ public class Library implements Serializable {
 		System.out.println("succesfully removed " +map.remove(productId).title);
 		
 	}
+	public void infoItem(int productId) {
+		map.forEach((key, value) -> System.out.println(value));
+	}
 
 	public void borrowItem(int productId, Person person) {
 		if (map.get(productId).borrowedBy == null) {
