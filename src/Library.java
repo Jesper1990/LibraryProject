@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 
 public class Library implements Serializable {
@@ -33,18 +32,19 @@ public class Library implements Serializable {
 	public void borrowItem(int productId, Person person) {
 		if (map.get(productId).borrowedBy == null) {
 			map.get(productId).borrowedBy = person;
-			System.out.println("Successfully lended " + map.get(productId).title + " to " + person.name);
+			System.out.println("Successfully lended " + map.get(productId).title + " to " + Person.name);
 		} else {
-			System.out.println(map.get(productId).title + " is already borrowed by " + person.name);
+			System.out.println(map.get(productId).title + " is already borrowed by " + Person.name);
 		}
 	}
-	public void returnItem(int productId, Person person) {
-		if(!(map.get(productId).borrowedBy == null)) {
+	public void returnItem(int productId) {
+		 try {
 			map.get(productId).borrowedBy = null;
-			System.out.println("Successfully returned " + map.get(productId).title + " from " + person.name);
-		} else {
-			System.out.println("Cannot return " + map.get(productId).title + "." + "It is already borrowed.");
-		}
+			System.out.println("Successfully returned " + map.get(productId).title + " from " + Person.name);
+		 } catch (NullPointerException e) {
+			 System.out.println("Cannot return " + map.get(productId).title + ". It is not borrowed by any customer.");
+		 }
+		
 	}
 	public void listPrint() {	
 		

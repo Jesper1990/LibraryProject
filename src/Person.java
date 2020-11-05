@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 public class Person implements Serializable {
 	
-	protected String name;
+	protected static String name;
 	protected String phoneNum;
 	
 	public Person() {

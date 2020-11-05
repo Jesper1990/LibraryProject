@@ -41,6 +41,8 @@ public class Main {
 				}
 			} else if (str.equals("checkout")) {
 				borrowItem();
+			} else if (str.equals("checkin")) {
+				returnItem();
 			} else if (str.equals("remove")) {
 				removeItem();
 			}
@@ -133,6 +135,7 @@ public class Main {
 		String phoneNum;
 		System.out.println("Enter the product ID of the item you wanna borrow: ");
 		productId = scanner.nextInt();
+		if(lib.checkId(productId)) {
 		scanner.nextLine();
 		System.out.println("Enter your full name: ");
 		name = scanner.nextLine();
@@ -141,13 +144,24 @@ public class Main {
 				
 		Person p = new Person(name, phoneNum);		
 		lib.borrowItem(productId, p);
-		
+		} else {
+			System.out.println("Product does not exist.");
+		}
 	}
 	public static void returnItem() {
+		
 		int productId;
 		System.out.println("Enter the product ID of the item you wanna return: ");
+		try {
 		productId = scanner.nextInt();
-		
+		if(lib.checkId(productId)) {
+		lib.returnItem(productId);
+		} else {
+			System.out.println("Product does not exist.");
+		}
+		} catch (InputMismatchException e) {
+			System.out.println("Unkown command, please enter ID.");
+		}  
 		
 	}
 	
