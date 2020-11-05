@@ -16,6 +16,6 @@ public class Book extends Item{
 	}
 	@Override
 	public String toString() {
-		return super.productId + " " + "(Book)" + " " +  super.title + " " + super.value + " " + pages + " " + publisher + "\n";
+		return super.productId + " " + "(Book)" + " " +  super.title + ": value " + super.value + "kr " + pages + "pages " + publisher + "\n";
 	}
 }
