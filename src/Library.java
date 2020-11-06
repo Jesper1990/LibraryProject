@@ -33,7 +33,9 @@ public class Library implements Serializable {
 		
 	}
 	public void infoItem(int productId) {
-		map.forEach((key, value) -> System.out.println(value));
+		if (map.containsKey(productId)) {
+		 System.out.println(map.get(productId));
+		}
 	}
 
 	public void borrowItem(int productId, Person person) {
