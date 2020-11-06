@@ -15,7 +15,8 @@ public class Main {
 
 
 	public static void main(String[] args) {	
-		System.out.println("Wanna register a book (b) or movie (m) ?");
+		System.out.println("Welcome to the public library!" + "\n" + "Current inventory:" +"\n");
+		readList();
 		
 		
 		isRunning = true;
@@ -206,7 +207,7 @@ public class Main {
 			fis = new FileInputStream(fileName);
 			ois = new ObjectInputStream(fis);
 			lib = (Library) ois.readObject();
-			System.out.println(lib);		
+			lib.listPrint();	
 			ois.close();
 		} catch (Exception e) {
 			e.printStackTrace();
