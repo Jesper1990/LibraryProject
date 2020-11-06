@@ -150,8 +150,7 @@ public class Main {
 	public static void borrowItem() {
 		int productId;
 		String name;
-		String phoneNum;
-		System.out.println("Enter the product ID of the item you wanna borrow: ");
+		String phoneNum;		
 		productId = scanner.nextInt();
 		if(lib.checkId(productId)) {
 		scanner.nextLine();
