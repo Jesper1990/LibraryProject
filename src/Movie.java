@@ -1,6 +1,10 @@
 
 public class Movie extends Item{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int runLength; 
 	private float rating;
 	

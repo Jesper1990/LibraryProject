@@ -5,6 +5,10 @@ import java.util.Map.Entry;
 
 public class Library implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private HashMap<Integer, Item> map;
 
 
