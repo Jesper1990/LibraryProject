@@ -61,7 +61,7 @@ public class Main {
 		String publisher;
 		
 
-		System.out.println("Enter productID: ");
+	try {	System.out.println("Enter productID: ");
 		productId = scanner.nextInt();
 		scanner.nextLine();
 		System.out.println("Enter Title: " );
@@ -79,8 +79,9 @@ public class Main {
 		} else {
 			Book b = new Book(productId, title, value, pages, publisher);
 			lib.addBook(b);
-			System.out.println("Successfully registered " + title + "!");
-			
+			System.out.println("Successfully registered " + title + "!"); }
+		}	catch (InputMismatchException e){
+			System.out.println("unknown command");
 		}
 
 	}
@@ -91,7 +92,7 @@ public class Main {
 		int runLength; 
 		float rating;
 
-		System.out.println("Enter productID: ");
+		try {	System.out.println("Enter productID: ");
 		productId = scanner.nextInt();
 		scanner.nextLine();
 		System.out.println("Enter Title: " );
@@ -108,11 +109,13 @@ public class Main {
 		} else {
 			Movie m = new Movie(productId, title, value, runLength, rating);
 			lib.addMovie(m);
-			System.out.println("Successfully registered " + title + "!");
-			
+			System.out.println("Successfully registered " + title + "!"); }
+		} catch (InputMismatchException e){
+			System.out.println("unknown command");
 		}
-				
 	}
+		
+	
 	public static void removeItem() {
 		int productId;
 		System.out.println("Enter the product ID of the item you wanna remove: ");
