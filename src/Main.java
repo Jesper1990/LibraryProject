@@ -167,8 +167,7 @@ public class Main {
 	}
 	public static void returnItem() {
 		
-		int productId;
-		System.out.println("Enter the product ID of the item you wanna return: ");
+		int productId;		
 		try {
 		productId = scanner.nextInt();
 		if(lib.checkId(productId)) {
