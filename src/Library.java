@@ -54,9 +54,9 @@ public class Library implements Serializable {
 		map.forEach((key, value) -> {
 			String itemType = " ";
 			if(value instanceof Book) {
-				itemType = "book"; 
+				itemType = "(book)"; 
 			} else {
-				itemType = "movie";
+				itemType = "(movie)";
 			}
 			System.out.println(key + " " + itemType + " " + value.title + " " + value.borrowedBy);
 		});
