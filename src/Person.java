@@ -19,6 +19,6 @@ public class Person implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return name + " " + phoneNum;
+		return "\n    " + "Borrowed by: " + name + ", " + phoneNum;
 	}
 }

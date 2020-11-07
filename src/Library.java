@@ -28,8 +28,9 @@ public class Library implements Serializable {
 		}
 		return false;		
 	}
-	public void  removeItem(int productId) {														
+	public void  removeItem(int productId) {				
 		System.out.println("succesfully removed " +map.remove(productId).title);
+		
 		
 	}
 	public void infoItem(int productId) {

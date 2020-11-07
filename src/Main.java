@@ -42,10 +42,13 @@ public class Main {
 				}
 			} else if (str.equals("checkout")) {
 				borrowItem();
+				addList();
 			} else if (str.equals("checkin")) {
 				returnItem();
+				addList();
 			} else if (str.equals("remove")) {
 				removeItem();
+				addList();
 				
 			}else if (str.equals("info")) {
 				infoItem();
@@ -126,7 +129,7 @@ public class Main {
 			lib.removeItem(productId);
 		} else { System.out.println("product doesnt exist"); }
 
-		}	catch(InputMismatchException e) {
+		} catch(InputMismatchException e) {
 			System.out.println("please enter an Id");
 		}
 
