@@ -40,18 +40,20 @@ public class Library implements Serializable {
 	}
 
 	public void borrowItem(int productId, Person person) {
+		
 		if (map.get(productId).borrowedBy == null) {
 			map.get(productId).borrowedBy = person;
-			System.out.println("Successfully lended " + map.get(productId).title + " to " + Person.name);
+			System.out.println("Successfully lended " + map.get(productId).title + " to " + person.name);
 		} else {
-			System.out.println(map.get(productId).title + " is already borrowed by " + Person.name);
+			System.out.println(map.get(productId).title + " is already borrowed by " + person.name);
 		}
 	}
 	public void returnItem(int productId) {
 		
 		 if(!(map.get(productId).borrowedBy == null)) {
+			 System.out.println("Successfully returned " + map.get(productId).title + " from " + map.get(productId).borrowedBy.name);
 			map.get(productId).borrowedBy = null;
-			System.out.println("Successfully returned " + map.get(productId).title + " from " + Person.name);
+			
 			
 		 } else {
 			 System.out.println("Cannot return " + map.get(productId).title + ". It is not borrowed by any customer.");
