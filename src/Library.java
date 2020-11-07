@@ -63,13 +63,21 @@ public class Library implements Serializable {
 	public void listPrint() {	
 		
 		map.forEach((key, value) -> {
+			String inStock = ""; 
 			String itemType = " ";
 			if(value instanceof Book) {
 				itemType = "(book)"; 
 			} else {
 				itemType = "(movie)";
 			}
-			System.out.println(key + " " + itemType + " " + value.title + " " + value.borrowedBy);
+			if(value.borrowedBy == null) {
+				
+				inStock ="(in stock)"; 
+			} else {
+				inStock = value.borrowedBy.toString();
+			}
+			
+			System.out.println(key + " " + itemType + " " + value.title + " " + inStock);
 		});
 	
 		
