@@ -16,7 +16,7 @@ public class Item implements Serializable{
 		title = null;
 		value = 0;
 	}
-	
+
 	public Item(int productId, String title, int value) {
 		this.productId = productId;
 		this.title = title;

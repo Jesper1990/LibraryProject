@@ -7,7 +7,7 @@ public class Book extends Item{
 	private static final long serialVersionUID = 1L;
 	private int pages;
 	private String publisher;
-	
+
 	public Book() {
 		super();
 		pages = 0;
@@ -20,6 +20,6 @@ public class Book extends Item{
 	}
 	@Override
 	public String toString() {
-		return super.productId + " " + "(Book)" + " " +  super.title + ": value " + super.value + "kr " + pages + "pages " + publisher + "\n";
+		return super.productId + " " + "(Book)" + " " +  super.title + ": value " + super.value + "kr, " + pages + "pages, " + publisher + "\n";
 	}
 }

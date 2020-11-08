@@ -15,45 +15,66 @@ public class Main {
 
 
 	public static void main(String[] args) {	
-		System.out.println("Welcome to the public library!" + "\n" + "Current inventory:" +"\n");
+		menu();
 		readList();
-		
-		
+
 		isRunning = true;
 
 		while(isRunning) {
 			String str = scanner.next();
-			if(str.equals("b")) {
-				addBook();
-				addList();
-				System.out.println("Wanna register a book (b) or movie (m) ?");
-			}
-			else if (str.equals("m")) {
+			if(str.equals("register")) {
+				System.out.println("Want to register a book (b) or movie (m) ?");
+
+			} else if (str.equals("m")) {
 				addMovie();
 				addList();
-				System.out.println("Wanna register a book (b) or movie (m) ?");
-			} else if (str.equals("read")) {
-				readList();
+
+			} else if (str.equals("b")) {
+				addBook();
+				addList();
+
 			} else if (str.equals("list")) {
-				try {
-					listPrint();
-				} catch (StackOverflowError e) {
-					e.printStackTrace();
-				}
+				listPrint();
+
 			} else if (str.equals("checkout")) {
 				borrowItem();
 				addList();
+
 			} else if (str.equals("checkin")) {
 				returnItem();
 				addList();
+
 			} else if (str.equals("remove")) {
 				removeItem();
 				addList();
-				
-			}else if (str.equals("info")) {
+
+			} else if (str.equals("info")) {
 				infoItem();
+
+			} else if (str.equals("menu")) {
+				menu();
+
+			} else if (str.equals("quit")) {
+				System.out.println("Exiting program! Thank you for using the library.");
+				System.exit(0);
+
+			} else {
+				System.out.println("Unknown command, please use the menu for reference!");
+
 			}
 		}
+
+	}
+
+	public static void menu() {
+		System.out.println("Welcome to the Library menu! " + "\n" 
+				+ "register - Will give you an option to register an item." + "\n" 
+				+ "list - Will give you a display of the current library." + "\n"
+				+ "checkout (id) - Lets you borrow an item of your choice with specified ID." + "\n"
+				+ "checkin (id) - Lets you return your borrowed item with specified ID." + "\n" 
+				+ "remove (id) - Will remove the item with specific ID" + "\n"
+				+ "info (id) - Prints out the current information on the item with specified ID" + "\n"
+				+ "quit - Exits the program.");
 
 	}
 
@@ -63,29 +84,33 @@ public class Main {
 		int value; 
 		int pages;
 		String publisher;
-		
 
-	try {	System.out.println("Enter productID: ");
-		productId = scanner.nextInt();
-		scanner.nextLine();
-		System.out.println("Enter Title: " );
-		title = scanner.nextLine();
-		System.out.println("Enter Value: ");
-		value = scanner.nextInt();
-		System.out.println("Enter Pages: ");
-		pages = scanner.nextInt();
-		scanner.nextLine();
-		System.out.println("Enter Publisher: ");
-		publisher = scanner.nextLine();
-		
-		if(lib.checkId(productId)) {
-			System.out.println("Error: Product with ID " + productId + " already exists!");			
-		} else {
-			Book b = new Book(productId, title, value, pages, publisher);
-			lib.addBook(b);
-			System.out.println("Successfully registered " + title + "!"); }
+
+		try {	
+			System.out.println("Enter productID: ");
+			productId = scanner.nextInt();
+
+			if(lib.checkId(productId)) {
+				System.out.println("Error: Product with ID " + productId + " already exists!");			
+			} else if (productId != 5) {
+				System.out.println("Error: Product ID must be 5 digits!");
+			} else {
+				scanner.nextLine();
+				System.out.println("Enter Title: " );
+				title = scanner.nextLine();
+				System.out.println("Enter Value: ");
+				value = scanner.nextInt();
+				System.out.println("Enter Pages: ");
+				pages = scanner.nextInt();
+				scanner.nextLine();
+				System.out.println("Enter Publisher: ");
+				publisher = scanner.nextLine();
+
+				Book b = new Book(productId, title, value, pages, publisher);
+				lib.addBook(b);
+				System.out.println("Successfully registered " + title + "!"); }
 		}	catch (InputMismatchException e){
-			System.out.println("unknown command");
+			System.out.println("Unknown command, please try again.");
 		}
 
 	}
@@ -96,30 +121,31 @@ public class Main {
 		int runLength; 
 		float rating;
 
-		try {	System.out.println("Enter productID: ");
-		productId = scanner.nextInt();
-		scanner.nextLine();
-		System.out.println("Enter Title: " );
-		title = scanner.nextLine();
-		System.out.println("Enter Value: ");
-		value = scanner.nextInt();
-		System.out.println("Enter Runlength: ");
-		runLength = scanner.nextInt();
-		System.out.println("Enter Rating: ");
-		rating = scanner.nextFloat();
-
-		if(lib.checkId(productId)) {
-			System.out.println("Error: Product with ID " + productId + " already exists!");			
-		} else {
-			Movie m = new Movie(productId, title, value, runLength, rating);
-			lib.addMovie(m);
-			System.out.println("Successfully registered " + title + "!"); }
+		try {	
+			System.out.println("Enter productID: ");
+			productId = scanner.nextInt();
+			if(lib.checkId(productId)) {
+				System.out.println("Error: Product with ID " + productId + " already exists!");			
+			} else if (productId != 5) {
+				System.out.println("Error: Product ID must be 5 digits!");
+			} else {
+				scanner.nextLine();
+				System.out.println("Enter Title: " );
+				title = scanner.nextLine();
+				System.out.println("Enter Value: ");
+				value = scanner.nextInt();
+				System.out.println("Enter Runlength: ");
+				runLength = scanner.nextInt();
+				System.out.println("Enter Rating: ");
+				rating = scanner.nextFloat();
+				Movie m = new Movie(productId, title, value, runLength, rating);
+				lib.addMovie(m);
+				System.out.println("Successfully registered " + title + "!"); }
 		} catch (InputMismatchException e){
-			System.out.println("unknown command");
+			System.out.println("Unknown command, please try again.");
 		}
 	}
-		
-	
+
 	public static void removeItem() {
 		int productId;
 		System.out.println("Enter the product ID of the item you wanna remove: ");
@@ -127,10 +153,10 @@ public class Main {
 		try {	productId = scanner.nextInt();
 		if(lib.checkId(productId)) {
 			lib.removeItem(productId);
-		} else { System.out.println("product doesnt exist"); }
+		} else { System.out.println("Product does not exist."); }
 
 		} catch(InputMismatchException e) {
-			System.out.println("please enter an Id");
+			System.out.println("Unknown input, please enter ID number.");
 		}
 
 	}
@@ -140,51 +166,57 @@ public class Main {
 		if (lib.checkId(productId)){
 			lib.infoItem(productId);
 		} else {
-			System.out.println("error: no product with id " + productId + " registered.");}
+			System.out.println("Error: no product with ID " + productId + " registered.");}
 		}
 		catch(InputMismatchException e) {
-			System.out.println("please enter an Id");
+			System.out.println("Unknown input, please enter ID number.");
 		}
 	}
 
 	public static void listPrint() {
 		lib.listPrint();
 	}
-	
+
 	public static void borrowItem() {
 		int productId;
 		String name;
 		String phoneNum;		
-		productId = scanner.nextInt();
-		if(lib.checkId(productId)) {
-		scanner.nextLine();
-		System.out.println("Enter your full name: ");
-		name = scanner.nextLine();
-		System.out.println("Enter your phone number: ");
-		phoneNum = scanner.next();
-				
-		Person p = new Person(name, phoneNum);		
-		lib.borrowItem(productId, p);
-		} else {
-			System.out.println("Product does not exist.");
+		try {
+			productId = scanner.nextInt();
+
+			if(lib.checkId(productId)) {
+				scanner.nextLine();
+				System.out.println("Enter your full name: ");
+				name = scanner.nextLine();
+				System.out.println("Enter your phone number: ");
+				phoneNum = scanner.next();
+
+				Person p = new Person(name, phoneNum);		
+				lib.borrowItem(productId, p);
+
+			} else {
+				System.out.println("Product does not exist.");
+			}		
+		} catch (InputMismatchException e) {
+			System.out.println("Unknown input, please enter ID number.");
 		}
 	}
 	public static void returnItem() {
-		
+
 		int productId;		
 		try {
-		productId = scanner.nextInt();
-		if(lib.checkId(productId)) {
-		lib.returnItem(productId);
-		} else {
-			System.out.println("Product does not exist.");
-		}
+			productId = scanner.nextInt();
+			if(lib.checkId(productId)) {
+				lib.returnItem(productId);
+			} else {
+				System.out.println("Product does not exist.");
+			}
 		} catch (InputMismatchException e) {
 			System.out.println("Unkown command, please enter ID.");
 		}  
-		
+
 	}
-	
+
 	public static void addList() {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
@@ -209,8 +241,7 @@ public class Main {
 		try {
 			fis = new FileInputStream(fileName);
 			ois = new ObjectInputStream(fis);
-			lib = (Library) ois.readObject();
-			lib.listPrint();	
+			lib = (Library) ois.readObject();	
 			ois.close();
 		} catch (Exception e) {
 			e.printStackTrace();
