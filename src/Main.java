@@ -67,7 +67,7 @@ public class Main {
 	}
 
 	public static void menu() {
-		System.out.println("Welcome to the Library menu! " + "\n" 
+		System.out.println("Welcome to the Library menu! " + "\n" + "\n" 
 				+ "register - Will give you an option to register an item." + "\n" 
 				+ "list - Will give you a display of the current library." + "\n"
 				+ "checkout (id) - Lets you borrow an item of your choice with specified ID." + "\n"
@@ -84,15 +84,13 @@ public class Main {
 		int value; 
 		int pages;
 		String publisher;
-
-
 		try {	
 			System.out.println("Enter productID: ");
 			productId = scanner.nextInt();
-
+			String s = Integer.toString(productId);
 			if(lib.checkId(productId)) {
 				System.out.println("Error: Product with ID " + productId + " already exists!");			
-			} else if (productId != 5) {
+			} else if (s.length() != 5) {
 				System.out.println("Error: Product ID must be 5 digits!");
 			} else {
 				scanner.nextLine();
@@ -115,18 +113,18 @@ public class Main {
 
 	}
 	public static void addMovie() {
-		int productId;
+		int productId = 0;
 		String title;
 		int value;
 		int runLength; 
-		float rating;
-
+		float rating;		
 		try {	
 			System.out.println("Enter productID: ");
 			productId = scanner.nextInt();
+			String s = Integer.toString(productId);
 			if(lib.checkId(productId)) {
 				System.out.println("Error: Product with ID " + productId + " already exists!");			
-			} else if (productId != 5) {
+			} else if (s.length() != 5) {
 				System.out.println("Error: Product ID must be 5 digits!");
 			} else {
 				scanner.nextLine();
@@ -148,9 +146,9 @@ public class Main {
 
 	public static void removeItem() {
 		int productId;
-		System.out.println("Enter the product ID of the item you wanna remove: ");
-
-		try {	productId = scanner.nextInt();
+		
+		try {	
+			productId = scanner.nextInt();
 		if(lib.checkId(productId)) {
 			lib.removeItem(productId);
 		} else { System.out.println("Product does not exist."); }
@@ -162,7 +160,8 @@ public class Main {
 	}
 	public static void infoItem() {
 		int productId;
-		try {	productId = scanner.nextInt();
+		try {	
+			productId = scanner.nextInt();
 		if (lib.checkId(productId)){
 			lib.infoItem(productId);
 		} else {
@@ -206,6 +205,7 @@ public class Main {
 		int productId;		
 		try {
 			productId = scanner.nextInt();
+			
 			if(lib.checkId(productId)) {
 				lib.returnItem(productId);
 			} else {
@@ -224,15 +224,10 @@ public class Main {
 			fos = new FileOutputStream(fileName);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(lib);
-			oos.flush();
+			oos.close();
 		} catch(Exception e ) {
 			e.printStackTrace();
 			return;
-		}
-		try {
-			oos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	public static void readList() {

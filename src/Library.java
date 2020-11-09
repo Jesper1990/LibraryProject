@@ -75,7 +75,7 @@ public class Library implements Serializable {
 				inStock = value.borrowedBy.toString();
 			}
 
-			System.out.println(key + " " + itemType + " " + value.title + " " + inStock);
+			System.out.println(key + " " + itemType + " " + value.title + ". -> " + inStock);
 		});	
 	}
 
